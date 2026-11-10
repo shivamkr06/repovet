@@ -33,9 +33,9 @@ classifiers = [
 dependencies = []
 
 [project.urls]
-Homepage = "https://github.com/OWNER/repovet"
-Issues = "https://github.com/OWNER/repovet/issues"
-Changelog = "https://github.com/OWNER/repovet/blob/main/CHANGELOG.md"
+Homepage = "https://github.com/shivamkr06/repovet"
+Issues = "https://github.com/shivamkr06/repovet/issues"
+Changelog = "https://github.com/shivamkr06/repovet/blob/main/CHANGELOG.md"
 
 [project.scripts]
 repovet = "repovet.cli:main"

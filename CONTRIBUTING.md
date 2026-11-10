@@ -6,7 +6,7 @@ function, no network inside checks.
 ## Setup
 
 ```bash
-git clone https://github.com/OWNER/repovet.git
+git clone https://github.com/shivamkr06/repovet.git
 cd repovet
 pip install -e .
 python -m unittest discover -s tests

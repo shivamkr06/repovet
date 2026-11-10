@@ -2,7 +2,7 @@
 
 **Check a GitHub repo for fake stars, abandonment, malware-style install scripts and typosquatting before you clone, install or depend on it. Also finds new repos that match your stack.**
 
-[![CI](https://github.com/OWNER/repovet/actions/workflows/ci.yml/badge.svg)](https://github.com/OWNER/repovet/actions/workflows/ci.yml)
+[![CI](https://github.com/shivamkr06/repovet/actions/workflows/ci.yml/badge.svg)](https://github.com/shivamkr06/repovet/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 ![Python 3.9+](https://img.shields.io/badge/python-3.9%2B-blue)
 ![Dependencies: none](https://img.shields.io/badge/dependencies-none-brightgreen)
@@ -20,7 +20,7 @@ seconds.
 ## Quick start
 
 ```bash
-pip install git+https://github.com/OWNER/repovet.git
+pip install git+https://github.com/shivamkr06/repovet.git
 ```
 
 ```bash
