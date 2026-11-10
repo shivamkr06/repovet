@@ -115,7 +115,8 @@ repovet radar --lang Rust --topic cli --days 30 --min-stars 200
 Works without a token, but the anonymous API allows about 6 vets per hour and the
 stargazer checks (fake accounts, star spikes) are skipped, because GitHub does not list
 stargazers anonymously. To lift both limits, set `GITHUB_TOKEN` (or `GH_TOKEN`) to a token
-with no scopes. If the `gh` CLI is installed and logged in, its token is used automatically.
+with no scopes. Some tokens (seen on new GitHub accounts) get no stargazer data back from
+GitHub; `repovet` then skips those two checks and says so in a note. If the `gh` CLI is installed and logged in, its token is used automatically.
 
 Responses are cached for one hour in `~/.cache/repovet` (`--no-cache` to bypass,
 `REPOVET_CACHE` to move it). The token is only ever sent to `api.github.com`.

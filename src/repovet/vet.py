@@ -6,7 +6,7 @@ import math
 from datetime import datetime, timezone
 
 from . import checks
-from .github import GitHub, GitHubError, RateLimited
+from .github import GitHub, GitHubError, NotFound, RateLimited
 
 STAR_JSON = "application/vnd.github.star+json"
 STARGAZER_QUERY = """
@@ -71,8 +71,12 @@ def collect(gh: GitHub, owner: str, name: str) -> dict:
             return []
         pages = []
         for number in _star_page_numbers(repo.get("stargazers_count", 0), 5):
-            page = gh.get(f"/repos/{full}/stargazers",
-                          {"per_page": 100, "page": number}, accept=STAR_JSON) or []
+            try:
+                page = gh.get(f"/repos/{full}/stargazers",
+                              {"per_page": 100, "page": number}, accept=STAR_JSON) or []
+            except NotFound:
+                raise GitHubError("GitHub did not return the stargazer list for this token; "
+                                  "star-spike check skipped") from None
             pages.append([s["starred_at"] for s in page if s.get("starred_at")])
         return pages
     safe("star_pages", [], star_pages)
@@ -82,10 +86,14 @@ def collect(gh: GitHub, owner: str, name: str) -> dict:
             return []
         result = gh.graphql(STARGAZER_QUERY, {"owner": owner, "name": name})
         edges = ((result.get("repository") or {}).get("stargazers") or {}).get("edges") or []
-        return [{"starred_at": e["starredAt"], "created_at": e["node"]["createdAt"],
-                 "followers": e["node"]["followers"]["totalCount"],
-                 "public_repos": e["node"]["repositories"]["totalCount"]}
-                for e in edges if e.get("node")]
+        found = [{"starred_at": e["starredAt"], "created_at": e["node"]["createdAt"],
+                  "followers": e["node"]["followers"]["totalCount"],
+                  "public_repos": e["node"]["repositories"]["totalCount"]}
+                 for e in edges if e.get("node")]
+        if not found and repo.get("stargazers_count", 0) >= 30:
+            raise GitHubError("GitHub returned no stargazer profiles for this token; "
+                              "ghost-account check skipped")
+        return found
     safe("profiles", [], profiles)
 
     safe("name_hits", [], lambda: (gh.get("/search/repositories", {
