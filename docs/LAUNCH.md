@@ -12,7 +12,7 @@ depend on it: fork/star ratios, star spikes, brand-new stargazer accounts, stale
 single-maintainer projects, license problems, install hooks that run commands, and
 same-name lookalikes. `repovet radar` also lists new repos matching your stack.
 
-    pip install git+https://github.com/shivamkr06/repovet.git
+    pip install repovet-cli
     repovet vet psf/requests
 
 Heuristics, not proof. False positives are bugs, so please file them:
@@ -34,4 +34,4 @@ https://github.com/shivamkr06/repovet
 
 - dev.to / Hashnode post: "How I detect fake GitHub stars" with the check table.
 - Add it to awesome lists for supply-chain security and Python CLI tools (open a PR).
-- After PyPI: update the install line in the README to `pip install repovet`.
+- Link the PyPI page once the first release is live.

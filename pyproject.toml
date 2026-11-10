@@ -3,7 +3,7 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "repovet"
+name = "repovet-cli"
 version = "0.1.0"
 description = "Vet a GitHub repo for fake stars, abandonment, risky install scripts and typosquatting. Radar for new repos in your stack."
 readme = "README.md"

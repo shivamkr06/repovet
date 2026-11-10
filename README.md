@@ -20,6 +20,12 @@ seconds.
 ## Quick start
 
 ```bash
+pip install repovet-cli
+```
+
+The command is `repovet`. From source instead:
+
+```bash
 pip install git+https://github.com/shivamkr06/repovet.git
 ```
 
